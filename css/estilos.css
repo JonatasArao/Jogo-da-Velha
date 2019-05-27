@@ -1,0 +1,33 @@
+#inicio{
+    margin-top: 2%;
+}
+.grade{
+    height: 10vh;
+}
+.X,.O{
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+}
+.X{
+    background-image: url("../img/X.png");
+}
+.O{
+    background-image: url("../img/O.png");
+}
+@media only screen and (min-width:576px){
+    .grade{
+        height: 15vh;
+    }
+    .X,.O{
+        background-size: 110px;
+    }
+}
+@media only screen and (min-width:768px){
+    .grade{
+        height: 24vh;
+    }
+    .X,.O{
+        background-size: 150px;
+    }
+}
