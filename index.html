@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<!-- Autor: Jonatas Arão de Carvalho Neves -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <!-- Link Bootstrap CSS - Local -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Link Estilos CSS -->
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+    <!-- Cabeçalho do Jogo -->
+    <header class="container-fluid">
+        <div class="row">
+            <div class="col-9 mx-auto p-2">
+                <h1 class="text-center">Jogo da Velha</h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Menu de Ínicio -->
+    <section class="container-fluid">
+        <div class="row" id="inicio">
+            <div class="col-md-5 col-sm-8 mx-auto mt-2">
+                <form class="text-center">
+                    <div class="form-group">
+                        <label>Jogador 1</label>
+                        <div class="form-row">
+                            <div class="col-9">
+                                <input class="form-control text-center" type="text" id="nm_p-1">
+                            </div>
+                            <div class="col-3">
+                                <select class="form-control" id="icone_p-1">
+                                    <option>X</option>
+                                    <option>O</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Jogador 2</label>
+                        <div class="form-row">
+                            <div class="col-9">
+                                <input class="form-control text-center" type="text" id="nm_p-2">
+                            </div>
+                            <div class="col-3">
+                                <select class="form-control" id="icone_p-2">
+                                    <option>O</option>
+                                    <option>X</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <button class="btn btn-primary btn-block" id="jogar">Jogar</button>
+            </div>
+        </div>
+
+        <!-- Tabuleiro do Jogo -->
+        <div class="row" id="jogo">
+            <div class="col-6 mx-auto mt-2">
+                <!-- Mostra nome dos jogadores -->
+                <div class="row mb-1 border-bottom border-dark">
+                    <div class="col-md-3 col-sm-12">
+                        <h4>Jogador 1:</h4>
+                        <div id="vez-p1"></div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <h5 id="mostrar_nm_p-1"></h5>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <h4>Jogador 2:</h4>
+                        <div id="vez-p2"></div>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                        <h5 id="mostrar_nm_p-2"></h5>
+                    </div>
+                </div>
+                <!-- Tabueiro -->
+                <div class="row">
+                    <div class="col-4 border border-dark border-top-0 border-left-0 grade" id="a1">
+                    </div>
+                    <div class="col-4 border border-dark border-top-0 grade" id="a2">
+                    </div>
+                    <div class="col-4 border border-dark border-top-0 border-right-0 grade" id="a3">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 border border-dark border-left-0 grade" id="b1">
+                    </div>
+                    <div class="col-4 border border-dark grade" id="b2">
+                    </div>
+                    <div class="col-4 border border-dark border-right-0 grade" id="b3">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 border border-dark border-bottom-0 border-left-0 grade" id="c1">
+                    </div>
+                    <div class="col-4 border border-dark border-bottom-0 grade" id="c2">
+                    </div>
+                    <div class="col-4 border border-dark border-bottom-0 border-right-0 grade" id="c3">
+                    </div>
+                </div>
+                <!-- Botão para voltar ao menu -->
+                <button class="btn btn-primary btn-block mt-3" id="voltar">Voltar</button>
+
+                <!-- Modal que mostra o Vencedor da Partida, se houver -->
+                <div class="modal fade" id="vencedor">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">O nome do vencedor é</h4>
+                            </div>
+                            <div class="modal-body">
+                                <h3 class="text-center" id="mostra_vencedor"></h3>
+                            </div>
+                            <div class="modal-footer">
+                                <!-- Botão para voltar ao menu -->
+                                <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal"
+                                    id="encerrar_1">Voltar ao Ínicio</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Modal que mostra que o jogo acabou em velha -->
+                <div class="modal fade" id="velha">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Ninguém venceu</h4>
+
+                            </div>
+                            <div class="modal-body">
+                                <h3 class="text-center">Deu Velha!</h3>
+                            </div>
+                            <div class="modal-footer">
+                                <!-- Botão para voltar ao menu -->
+                                <button type="button" class="btn btn-primary mx-auto" data-dismiss="modal"
+                                    id="encerrar_2">Voltar ao Ínicio</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Link Jquery -->
+    <script src="js/jquery-3.3.1.slim.min.js"></script>
+    <!-- Link Popper -->
+    <script src="js/popper.min.js"></script>
+    <!-- Link Bootstrap JS -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Link AcãoJogo JS - O que faz o jogo funcionar -->
+    <script src="js/acaojogo.js"></script>
+</body>
+
+</html>
